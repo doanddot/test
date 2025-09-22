@@ -1,0 +1,43 @@
+.card {
+  background-color: transparent;
+  margin-top: 12px;
+}
+
+.progress-bar {
+  z-index: 1;
+}
+
+.table {
+  background-color: inherit;
+}
+
+.mat-mdc-row  {
+  cursor: pointer;
+
+  .mat-mdc-cell {
+    position: relative;
+
+    &::before {
+      background-color: var(--mat-sys-on-surface);
+      content: '';
+      opacity: 0;
+      position: absolute;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+    }
+  }
+
+  @media (hover) {
+    &:hover .mat-mdc-cell::before { opacity: 0.08; }
+  }
+  &:focus-visible .mat-mdc-cell::before { opacity: 0.12; }
+  &:active .mat-mdc-cell::before { opacity: 0.16; }
+}
+
+.paginator {
+  background-color: inherit;
+  border-top: 1px solid var(--mat-sys-outline);
+}

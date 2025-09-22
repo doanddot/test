@@ -1,0 +1,35 @@
+<app-drawer>
+  <div class="container">
+    <form [formGroup]="formGroup" class="form d-flex flex-column">
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+        <mat-error>
+          @if (formGroup.controls.email.errors?.['required']) { Обязательное поле }
+          @if (formGroup.controls.email.errors?.['email']) { {{ formGroup.controls.email.errors?.['email'] }} }
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Фамилия</mat-label>
+        <input matInput formControlName="surname">
+        <mat-error>
+          @if (formGroup.controls.surname.errors?.['required']) { Обязательное поле }
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Имя</mat-label>
+        <input matInput formControlName="name">
+        <mat-error>
+          @if (formGroup.controls.name.errors?.['required']) { Обязательное поле }
+        </mat-error>
+      </mat-form-field>
+    </form>
+    <div class="d-flex justify-content-space-between" style="margin-top: 12px">
+      <button mat-button (click)="save()">Сохранить</button>
+      <button mat-button (click)="delete()" style="color: red">Удалить</button>
+    </div>
+  </div>
+</app-drawer>

@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>@if (bookId) { Изменить } @else { Добавить } книгу</h2>
+<mat-dialog-content class="dialog-content">
+  <form [formGroup]="bookForm" class="form d-flex flex-column">
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Год</mat-label>
+      <input matInput formControlName="year">
+      <mat-error>
+        @if (bookForm.controls.year.errors?.['required']) { Обязательное поле }
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Наименование</mat-label>
+      <input matInput formControlName="title">
+      <mat-error>
+        @if (bookForm.controls.title.errors?.['required']) { Обязательное поле }
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Издательство</mat-label>
+      <input matInput formControlName="publisher">
+      <mat-error>
+        @if (bookForm.controls.publisher.errors?.['required']) { Обязательное поле }
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Страницы</mat-label>
+      <input matInput formControlName="pages">
+      <mat-error>
+        @if (bookForm.controls.pages.errors?.['required']) { Обязательное поле }
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Отмена</button>
+  <button mat-button (click)="save()">Сохранить</button>
+</mat-dialog-actions>

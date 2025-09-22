@@ -1,0 +1,118 @@
+<div class="container">
+  <div class="grid">
+    <div class="g-col-12">
+      <mat-card class="reset-password__card" appearance="outlined">
+        <mat-card-content class="reset-password__card-content">
+          @if (loading$ | async) {
+            <div class="reset-password__progress-bar">
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </div>
+          }
+          <div class="reset-password__column d-flex flex-column">
+            <div>
+              <h1 class="reset-password__headline">Регистрация</h1>
+              <p class="mat-body-1">Регистрация нового пользователя</p>
+            </div>
+          </div>
+          @if (success$ | async) {
+            <div class="reset-password__form d-flex flex-column">
+              <p>Пользователь зарегестрирован!</p>
+              <div class="reset-password__actions d-flex justify-content-end">
+                <button class="reset-password__submit" mat-flat-button routerLink="/signin" type="button">Войти</button>
+              </div>
+            </div>
+          } @else {
+            <form [formGroup]="formGroup" class="reset-password__form d-flex flex-column">
+              <mat-form-field appearance="outline">
+                <mat-label>Фамилия</mat-label>
+                <input
+                    formControlName="surname"
+                    matInput
+                    type="text"
+                    autocomplete="surname"
+                    required
+                >
+                @if (surname.invalid) {
+                  <mat-error>
+                    @if (surname.errors?.['required']) { Обязательное поле }
+                  </mat-error>
+                }
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Имя</mat-label>
+                <input
+                    formControlName="name"
+                    matInput
+                    type="text"
+                    autocomplete="name"
+                    required
+                >
+                @if (name.invalid) {
+                  <mat-error>
+                    @if (name.errors?.['required']) { Обязательное поле }
+                  </mat-error>
+                }
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>E-mail</mat-label>
+                <input
+                    formControlName="email"
+                    matInput
+                    type="text"
+                    autocomplete="username"
+                    required
+                >
+                @if (email.invalid) {
+                  <mat-error>
+                    @if (email.errors?.['required']) { Обязательное поле }
+                    @if (email.errors?.['email']) { {{ email.errors?.['email'] }} }
+                  </mat-error>
+                }
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Новый пароль</mat-label>
+                <input
+                    formControlName="password"
+                    matInput
+                    type="password"
+                    autocomplete="off"
+                    required
+                    [type]="visibility ? 'text' : 'password'"
+                >
+                @if (password.invalid) {
+                  <mat-error>
+                    @if (password.errors?.['required']) { Обязательное поле }
+                  </mat-error>
+                }
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Подтверждение пароля</mat-label>
+                <input
+                    formControlName="confirmPassword"
+                    matInput
+                    type="password"
+                    required
+                    autocomplete="off"
+                    [type]="visibility ? 'text' : 'password'"
+                >
+                @if (confirmPassword.invalid) {
+                  <mat-error>
+                    @if (confirmPassword.errors?.['required']) { Обязательное поле }
+                    @if (confirmPassword.errors?.['equal']) { {{ confirmPassword.errors?.['equal'] }} }
+                  </mat-error>
+                }
+              </mat-form-field>
+              <div class="reset-password__checkbox align-items-center d-flex">
+                <mat-checkbox (click)="visibility = !visibility">Показать пароль</mat-checkbox>
+              </div>
+              <div class="reset-password__actions d-flex justify-content-end">
+                <button mat-button type="button" routerLink="/signin">Войти</button>
+                <button mat-flat-button (click)="submit()" type="button">Регистрация</button>
+              </div>
+            </form>
+          }
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

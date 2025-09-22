@@ -1,0 +1,65 @@
+<h2 mat-dialog-title>@if (userId) { Изменить } @else { Добавить } пользователя</h2>
+<mat-dialog-content class="dialog-content">
+  <form [formGroup]="userForm" class="form d-flex flex-column">
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Роль</mat-label>
+      <mat-select formControlName="role_id">
+        @for (role of roles; track role) {
+          <mat-option [value]="role.id">{{ role.name }}</mat-option>
+        }
+      </mat-select>
+      <mat-error>
+        @if (userForm.controls.role_id.errors?.['required']) { Обязательное поле }
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+      <mat-error>
+        @if (userForm.controls.email.errors?.['required']) { Обязательное поле }
+        @if (userForm.controls.email.errors?.['email']) { {{ userForm.controls.email.errors?.['email'] }} }
+      </mat-error>
+    </mat-form-field>
+
+    @if (!userId) {
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Пароль</mat-label>
+        <input matInput formControlName="password">
+        <button type="button" mat-icon-button matIconSuffix (click)="generatePassword()" matTooltip="Случайный пароль">
+          <mat-icon>shuffle</mat-icon>
+        </button>
+        <mat-error>
+          @if (userForm.controls.password.errors?.['required']) { Обязательное поле }
+        </mat-error>
+      </mat-form-field>
+    }
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Фамилия</mat-label>
+      <input matInput formControlName="surname">
+      <mat-error>
+        @if (userForm.controls.surname.errors?.['required']) { Обязательное поле }
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Имя</mat-label>
+      <input matInput formControlName="name">
+      <mat-error>
+        @if (userForm.controls.name.errors?.['required']) { Обязательное поле }
+      </mat-error>
+    </mat-form-field>
+
+    <mat-checkbox class="checkbox" formControlName="is_superuser">Суперпользователь</mat-checkbox>
+
+    @if (userId) {
+      <mat-checkbox class="checkbox" formControlName="is_active">Активный</mat-checkbox>
+    }
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Отмена</button>
+  <button mat-button (click)="save()">Сохранить</button>
+</mat-dialog-actions>

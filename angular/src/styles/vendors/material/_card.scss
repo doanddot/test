@@ -1,0 +1,8 @@
+@use '@angular/material' as mat;
+
+
+.mat-mdc-card {
+  @include mat.card-overrides((
+    outlined-container-color: transparent
+  ))
+}

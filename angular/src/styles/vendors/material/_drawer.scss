@@ -1,0 +1,38 @@
+@use '@angular/material' as mat;
+
+
+.mat-drawer-container {
+  height: 100dvh;
+  margin-top: -56px;
+  margin-bottom: -80px;
+  z-index: auto !important;
+
+  @media (min-width: 600px) {
+    margin-top: -64px;
+    margin-bottom: unset;
+    padding-left: 80px;
+  }
+
+  @media print {
+    height: auto;
+    padding-left: unset;
+  }
+
+  @include mat.sidenav-overrides((
+    content-background-color: transparent,
+  ));
+}
+
+.mat-drawer-content {
+  padding-top: 56px;
+  padding-bottom: 168px;
+
+  @media (min-width: 600px) {
+    padding-top: 64px;
+    padding-bottom: 24px;
+  }
+
+  @media print {
+    overflow: hidden !important;
+  }
+}

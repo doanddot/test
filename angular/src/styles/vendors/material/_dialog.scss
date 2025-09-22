@@ -1,0 +1,24 @@
+@use '@angular/material' as mat;
+
+
+.mat-mdc-dialog-content {
+  max-height: unset !important;
+}
+
+@media (max-width: 599px) {
+  .cdk-overlay-pane.mat-mdc-dialog-panel {
+    height: 100dvh !important;
+    max-width: unset !important;
+    width: 100dvw !important;
+  }
+
+  .mat-mdc-dialog-surface {
+    border-radius: unset !important;
+  }
+}
+
+@media (min-width: 600px) {
+  .cdk-overlay-pane.mat-mdc-dialog-panel {
+    max-height: 90dvh;
+  }
+}

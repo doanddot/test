@@ -1,0 +1,40 @@
+@use '@angular/material' as mat;
+
+
+.mat-mdc-chip {
+
+  &_draft {
+    @include mat.chips-overrides((
+      label-text-color: gray,
+      outline-color: gray
+    ))
+  }
+
+  &_on_review {
+    @include mat.chips-overrides((
+      label-text-color: royalblue,
+      outline-color: royalblue
+    ))
+  }
+
+  &_rejected {
+    @include mat.chips-overrides((
+      label-text-color: orange,
+      outline-color: orange
+    ))
+  }
+
+  &_closed {
+    @include mat.chips-overrides((
+      label-text-color: indianred,
+      outline-color: indianred
+    ))
+  }
+
+  &_approved {
+    @include mat.chips-overrides((
+      label-text-color: mediumseagreen,
+      outline-color: mediumseagreen
+    ))
+  }
+}

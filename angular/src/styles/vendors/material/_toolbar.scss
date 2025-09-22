@@ -1,0 +1,8 @@
+@use '@angular/material' as mat;
+
+
+.mat-toolbar {
+  @include mat.toolbar-overrides((
+      container-background-color: transparent,
+  ));
+}

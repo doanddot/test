@@ -1,0 +1,18 @@
+/* generated using openapi-typescript-codegen -- do not edit */
+/* istanbul ignore file */
+/* tslint:disable */
+/* eslint-disable */
+export enum ScopeName {
+  BOOKS_CREATE = 'books:create',
+  BOOKS_READ = 'books:read',
+  BOOKS_UPDATE = 'books:update',
+  BOOKS_DELETE = 'books:delete',
+  ROLES_CREATE = 'roles:create',
+  ROLES_READ = 'roles:read',
+  ROLES_UPDATE = 'roles:update',
+  ROLES_DELETE = 'roles:delete',
+  USERS_CREATE = 'users:create',
+  USERS_READ = 'users:read',
+  USERS_UPDATE = 'users:update',
+  USERS_DELETE = 'users:delete',
+}

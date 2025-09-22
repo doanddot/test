@@ -1,0 +1,126 @@
+@use '@angular/material' as mat;
+
+
+:host {
+  display: flex;
+  height: 100dvh;
+  width: 100dvw;
+
+  @media (min-width: 600px) {
+    align-items: center;
+    background-color: var(--mat-sys-background);
+  }
+}
+
+.sign-in {
+  &__card {
+    background-color: var(--mat-sys-surface-container-lowest);
+    border-color: transparent;
+    border-radius: var(--mat-sys-corner-extra-large);
+
+    @media (min-width: 600px) {
+      margin-right: auto;
+      margin-left: auto;
+      max-width: 457px;
+    }
+
+    @media (min-width: 840px) {
+      max-width: 935px;
+    }
+  }
+
+  &__card-content {
+    padding: 0 8px;
+
+    &:first-child { padding-top: 24px; }
+    &:last-child { padding-bottom: 24px; }
+
+    @media (min-width: 600px) {
+      padding: 0 24px;
+    }
+
+    @media (min-width: 840px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 24px;
+      padding: 0 36px;
+
+      &:first-child { padding-top: 36px; }
+      &:last-child { padding-bottom: 36px; }
+    }
+  }
+
+  &__progress-bar {
+    background: rgba(255, 255, 255, .5);
+    border-radius: var(--mat-sys-corner-extra-large);
+    padding: 0 8px 24px;
+    position: absolute;
+    z-index: 2;
+
+    top: -1px;
+    bottom: -1px;
+    left: -1px;
+    right: -1px;
+
+    @media (min-width: 600px) {
+      padding: 0 36px 36px;
+    }
+  }
+
+  &__column {
+    row-gap: 24px;
+  }
+
+  &__row {
+    column-gap: 16px;
+    grid-template-columns: 62px 1fr;
+  }
+
+  &__headline {
+    font-size: 32px;
+    line-height: 40px;
+
+    @media (min-width: 840px) {
+      font-size: 36px;
+      line-height: 44px;
+    }
+
+    @media (min-width: 1600px) {
+      font-size: 44px;
+      line-height: 52px;
+    }
+  }
+
+  &__form {
+    margin-top: 28px;
+    row-gap: 12px;
+
+    @media (min-width: 840px) {
+      margin-top: 52px;
+    }
+  }
+
+  &__checkbox {
+    height: 20px;
+    margin-left: 5px;
+  }
+
+  &__actions {
+    column-gap: 24px;
+  }
+
+  &__forgot-password {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  &__submit {
+    width: 88px;
+  }
+
+  &__spinner {
+    @include mat.progress-spinner-overrides((
+      active-indicator-color: var(--mat-sys-on-primary),
+    ))
+  }
+}

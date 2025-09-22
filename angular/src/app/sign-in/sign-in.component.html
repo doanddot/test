@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="grid">
+    <div class="g-col-12">
+      <mat-card class="sign-in__card" appearance="outlined">
+        <mat-card-content class="sign-in__card-content">
+          @if (loading$ | async) {
+            <div class="sign-in__progress-bar">
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </div>
+          }
+          <div class="sign-in__column d-flex flex-column">
+            <div>
+              <h1 class="sign-in__headline">Вход</h1>
+              <p class="mat-body-1">Используйте E-mail для входа</p>
+            </div>
+          </div>
+          <form [formGroup]="formGroup" class="sign-in__form d-flex flex-column">
+            <mat-form-field appearance="outline">
+              <mat-label>E-mail</mat-label>
+              <input
+                formControlName="email"
+                matInput
+                type="text"
+                autocomplete="username"
+                required
+              >
+              @if (email.invalid) {
+                <mat-error>
+                  @if (email.errors?.['required']) { Обязательное поле }
+                  @if (email.errors?.['email']) { {{ email.errors?.['email'] }} }
+                </mat-error>
+              }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Пароль</mat-label>
+              <input
+                formControlName="password"
+                matInput
+                type="password"
+                autocomplete="current-password"
+                required
+                [type]="visibility ? 'text' : 'password'"
+              >
+              @if (password.invalid) {
+                <mat-error>
+                  @if (password.errors?.['required']) { Обязательное поле }
+                  @if (password.errors?.['password']) { {{ password.errors?.['password'] }} }
+                </mat-error>
+              }
+            </mat-form-field>
+            <div class="sign-in__checkbox align-items-center d-flex">
+              <mat-checkbox (click)="visibility = !visibility">Показать пароль</mat-checkbox>
+            </div>
+            <div class="sign-in__actions d-flex justify-content-end">
+              <button class="sign-in__forgot-password" mat-button type="button" routerLink="/signup">Регистрация</button>
+              <button class="sign-in__submit" mat-flat-button (click)="submit()">Войти</button>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

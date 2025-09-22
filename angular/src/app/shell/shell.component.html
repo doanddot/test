@@ -1,0 +1,74 @@
+<mat-toolbar class="toolbar pe-none position-sticky d-print-none">
+  <div class="toolbar__container container d-flex justify-content-space-between">
+    <div></div>
+    <div>
+      <!--            <button class="pe-auto" mat-icon-button>-->
+      <!--              <mat-icon>notifications</mat-icon>-->
+      <!--            </button>-->
+      <button class="pe-auto" mat-icon-button (click)="isOpen = !isOpen" cdkOverlayOrigin #trigger="cdkOverlayOrigin">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+
+      <ng-template
+          cdkConnectedOverlay
+          [cdkConnectedOverlayOrigin]="width >= 600 ? trigger : { x: 0, y: 0, height: 0, width: 0 }"
+          [cdkConnectedOverlayHeight]="width >= 600 ? 'auto' : '100%'"
+          [cdkConnectedOverlayWidth]="width >= 600 ? 'auto' : '100%'"
+          [cdkConnectedOverlayOpen]="isOpen"
+          (overlayOutsideClick)="isOpen = !isOpen"
+      >
+        @if (user) {
+          <div class="overlay">
+            <mat-card class="overlay-card">
+              <mat-card-header>
+                <span class="overlay-card__title w-100">{{ user.email }}</span>
+                <button mat-icon-button class="overlay-card__close" (click)="isOpen = !isOpen">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-card-header>
+              <mat-card-content>
+                <mat-icon class="overlay-card__avatar d-block">account_circle</mat-icon>
+                <p class="overlay-card__headline">Здравствуйте, {{ user.name }}!</p>
+                <div class="overlay-card__list d-flex flex-column">
+                  @if (user.role) {
+                    <div class="overlay-card__list-item d-flex align-items-center justify-content-space-between">
+                      <div class="align-items-center d-flex">
+                        <mat-icon class="overlay-card__icon">groups</mat-icon>
+                        <div class="mat-body">Роль</div>
+                      </div>
+                      <div class="mat-caption">{{ user.role.name }}</div>
+                    </div>
+                  }
+                </div>
+                <a mat-fab extended class="overlay-card__logout" routerLink="me">
+                  <mat-icon>edit</mat-icon>
+                  Редактировать
+                </a>
+                <button mat-fab extended class="overlay-card__logout" (click)="logout()">
+                  <mat-icon>logout</mat-icon>
+                  Выйти
+                </button>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        }
+      </ng-template>
+
+    </div>
+  </div>
+</mat-toolbar>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
+
+<app-rail class="d-print-none">
+  @for (railItem of railItems; track railItem) {
+    <a app-rail-item [routerLink]="railItem.routerLink" routerLinkActive="rail-item_active">
+      @if (railItem.icon) {
+        <mat-icon>{{ railItem.icon }}</mat-icon>
+      }
+      <span>{{ railItem.label }}</span>
+    </a>
+  }
+</app-rail>

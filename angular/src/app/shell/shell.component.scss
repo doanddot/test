@@ -1,0 +1,121 @@
+@use '@angular/material' as mat;
+
+
+.filter {
+  row-gap: 8px;
+
+  &__header {
+    padding: 0 16px 16px;
+  }
+
+  &__row {
+    display: grid;
+    column-gap: 4px;
+    grid-template-columns: 1fr 1fr;
+    padding-bottom: 20px;
+
+    button {
+      height: 32px;
+      border-radius: var(--mat-sys-corner-small);
+    }
+  }
+}
+
+.toolbar {
+  padding: 0;
+  top: 0;
+  z-index: 2;
+
+  transition: margin-left 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  @include mat.toolbar-overrides((
+    container-background-color: transparent,
+  ));
+
+  @media (min-width: 600px) {
+    padding-left: 80px;
+  }
+}
+
+.overlay {
+  height: 100dvh;
+  width: 100dvw;
+
+  @media (min-width: 600px) {
+    max-width: 436px;
+    min-width: 240px;
+    padding: 8px 12px 16px;
+    width: 436px;
+  }
+}
+
+.overlay-card {
+  border-radius: 0;
+  height: 100%;
+
+  @media (min-width: 600px) {
+    border-radius: var(--mat-sys-corner-extra-large);
+    height: auto;
+  }
+
+  &__title {
+    font-weight: 500;
+    margin-left: 20px;
+    text-align: center;
+  }
+
+  &__close {
+    margin: -10px;
+  }
+
+  &__avatar {
+    display: block;
+    font-size: 80px;
+    height: 80px;
+    margin: 22px auto 0;
+    width: 80px;
+  }
+
+  &__headline {
+    font-size: 22px;
+    line-height: 28px;
+    margin: 8px 0;
+    text-align: center;
+  }
+
+  &__list {
+    padding-top: 12px;
+    row-gap: 2px;
+  }
+
+  &__list-item {
+    background-color: var(--mat-sys-surface-container);
+    border-radius: 4px;
+    column-gap: 8px;
+    padding: 20px 15px;
+
+    &:first-child { border-radius: 16px 16px 4px 4px; }
+    &:last-child { border-radius: 4px 4px 16px 16px ; }
+
+    .mat-body {
+      font-weight: bold;
+    }
+  }
+
+  &__icon {
+    margin-right: 8px;
+  }
+
+  &__logout {
+    margin-top: 12px;
+    width: 100%;
+
+    @include mat.fab-overrides((
+      extended-container-elevation-shadow: 0,
+      extended-focus-container-elevation-shadow: 0,
+      extended-hover-container-elevation-shadow: 0,
+      extended-pressed-container-elevation-shadow: 0,
+      container-color: var(--mat-sys-surface-container),
+    ))
+  }
+}
